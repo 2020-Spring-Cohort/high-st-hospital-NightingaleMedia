@@ -94,45 +94,22 @@ public class HospitalApplication {
         hospital.printAllPatientStats();
         String patientChoice = input.nextLine();
         System.out.println("You chose: " + patientChoice);
-        System.out.println("Who should treat them? (Pick by Employee Number) ");
-        hospital.printAllEmployees();
+
 
         boolean pickEmployee = false;
-        int choice = input.nextInt();
+
        // input.nextLine();
 
 
         while (pickEmployee == false) {
-            switch (choice) {
-                case 102:
-                    hospital.treatPatient(doc2, "Ellery");
-                    pickEmployee = true;
-                    break;
-                case 106:
-                    hospital.treatPatient(reception1, patientChoice);
-                    pickEmployee = true;
-                    break;
-                case 101:
-                    hospital.treatPatient(doc1, patientChoice);
-                    pickEmployee = true;
-                    break;
-                case 105:
-                    hospital.treatPatient(janitor1, patientChoice);
-                    pickEmployee = true;
-                    break;
-                case 103:
-                    hospital.treatPatient(nurse1, patientChoice);
-                    pickEmployee = true;
-                    break;
-                case 104:
-                    hospital.treatPatient(nurse2, patientChoice);
-                    pickEmployee = true;
-                    break;
-                default:
-                    System.out.println("Invalid Answer");
-                    pickEmployee = true;
-                    break;
-            }
+            System.out.println("Who should treat them? (Pick by Employee Number) ");
+            hospital.printAllEmployees();
+            int choice = input.nextInt();
+            input.nextLine();
+            //treatPatient returns a boolean
+
+            pickEmployee = hospital.treatPatient(choice,patientChoice);
+
         }
     }
 

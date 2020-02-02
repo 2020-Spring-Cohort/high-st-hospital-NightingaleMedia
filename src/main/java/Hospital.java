@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class Hospital {
 
-    HashMap<String, Employee> HospitalEmployees = new HashMap <String, Employee>();
+    HashMap<Integer, Employee> HospitalEmployees = new HashMap <Integer, Employee>();
     HashMap<String, Patient> HospitalPatients = new HashMap<>();
 
     public int patientCount = getPatientCount();
@@ -16,7 +16,7 @@ public class Hospital {
     }
 
     public void employeeAdd(Employee employee){
-        HospitalEmployees.put(employee.getName(), employee);
+        HospitalEmployees.put(employee.getEmpNumber(), employee);
     }
 
     public void patientAdd(Patient patient){
@@ -86,8 +86,9 @@ public class Hospital {
         System.out.format("+---------+----------------+-----------+------------+%n");
     }
 
-    public void treatPatient(Employee type, String patientName) {
-
+    public boolean treatPatient(int empNumber, String patientName) {
+        boolean answer = false;
+        Employee type = HospitalEmployees.get(empNumber);
         if (type instanceof CanTreatPatient){
             Patient patient = HospitalPatients.get(patientName);
             patient.setBLOOD_LEVEL(type.getBloodAmount());
@@ -96,12 +97,15 @@ public class Hospital {
             System.out.println("Blood Treatment Amount: " + type.getBloodAmount());
             System.out.println("Health Treatment Amount: " + type.getHealthAmount());
             patient.determineDischarge();
+            answer = true;
             if (patient.eligibleForDischarge == true){
                 System.out.println("This patient is now eligble for discharge.");
             }
         } else {
             System.out.println("This employee is not authorized...");
+            answer = false;
         }
+        return answer;
     }
 
     public void dischargePatient(String patientName){
