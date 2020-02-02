@@ -31,9 +31,9 @@ public class Hospital {
         return new ArrayList<>(HospitalPatients.values());
     }
 
-
     public void payAllEmployees(){
         for (Employee name : HospitalEmployees.values()){
+            System.out.println(name.getJob() + " " + name.getName() + " got paid: $" + name.salary);
             name.hasBeenPaid = true;
         }
     }
@@ -83,6 +83,7 @@ public class Hospital {
                 patientPrint.eligibleForDischarge);
 
         }
+        System.out.format("+---------+----------------+-----------+------------+%n");
     }
 
     public void treatPatient(Employee type, String patientName) {

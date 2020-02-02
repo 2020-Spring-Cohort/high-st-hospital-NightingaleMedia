@@ -4,12 +4,12 @@ public class HospitalApplication {
     private static Hospital hospital = new Hospital();
     private static Patient patient1 = new Patient("Ellery");
     private static Patient patient2 = new Patient("Joseph");
-    private static Employee doc1 = new Doctor("David",80000, "Radiology");
+    private static Employee doc1 = new Doctor("House",90000, "Radiology");
     private static Employee doc2 = new Doctor("Delos",80000, "Cardiology");
-    private static Employee nurse1 = new Nurse("Fred", 20000);
-    private static Employee nurse2 = new Nurse("Tisdale", 20000);
-    private static Employee janitor1 = new Janitor("Gerald",20000);
-    private static Employee reception1 = new Receptionist("Janet", 30000);
+    private static Employee nurse1 = new Nurse("Tisdale", 50000);
+    private static Employee nurse2 = new Nurse("Ratched", 50000);
+    private static Employee janitor1 = new Janitor("Gerald",40000);
+    private static Employee reception1 = new Receptionist("Janet", 45000);
     private static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -26,6 +26,7 @@ public class HospitalApplication {
             switch (hospitalChoice){
                 case 0:
                     menuChoice = 1;
+                    System.out.println("Thanks for playing!");
                     break;
                 case 1:
                     input.nextLine();
@@ -48,25 +49,33 @@ public class HospitalApplication {
                     input.nextLine();
                     dischargePatient();
                     break;
+                case 6:
+                    input.nextLine();
+                    hospital.payAllEmployees();
+                    break;
+                case 7:
+                    input.nextLine();
+                    //addEmployee();
+                    break;
 
                 case 9:
                     printMenuOptions();
-
             }
         }
     }
+
     public static void printMenuOptions(){
         System.out.println("1: Print All Employees");
         System.out.println("2: Print All Patients");
         System.out.println("3: Print Medical Staff Only");
         System.out.println("4: Treat a Patient");
         System.out.println("5: Discharge a Patient");
+        System.out.println("6: Pay Staff ");
         System.out.println("0: EXIT");
     }
     public static void initialize(Hospital hospital){
         hospital.patientAdd(patient1);
         hospital.patientAdd(patient2);
-
         hospital.employeeAdd(doc1);
         hospital.employeeAdd(doc2);
         hospital.employeeAdd(nurse1);
@@ -81,7 +90,7 @@ public class HospitalApplication {
     }
 
     public static void treatPatient() {
-        System.out.println("Which patient do you want to treat?");
+        System.out.println("Which patient do you want to treat? (Select by typing name)");
         hospital.printAllPatientStats();
         String patientChoice = input.nextLine();
         System.out.println("You chose: " + patientChoice);
@@ -128,9 +137,11 @@ public class HospitalApplication {
     }
 
     public static void dischargePatient(){
-        System.out.println("Pick the patient to discarge: ");
+        System.out.println("Pick the patient to discharge. (type the name)");
         printAllPatients();
         String choice = input.nextLine();
         hospital.dischargePatient(choice);
     }
+
+
 }
