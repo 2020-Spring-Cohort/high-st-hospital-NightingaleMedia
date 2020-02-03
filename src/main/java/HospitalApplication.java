@@ -55,7 +55,7 @@ public class HospitalApplication {
                     break;
                 case 7:
                     input.nextLine();
-                    //addEmployee();
+                    addEmployee();
                     break;
 
                 case 9:
@@ -71,6 +71,7 @@ public class HospitalApplication {
         System.out.println("4: Treat a Patient");
         System.out.println("5: Discharge a Patient");
         System.out.println("6: Pay Staff ");
+        System.out.println("7: Add Employee ");
         System.out.println("0: EXIT");
     }
     public static void initialize(Hospital hospital){
@@ -95,11 +96,7 @@ public class HospitalApplication {
         String patientChoice = input.nextLine();
         System.out.println("You chose: " + patientChoice);
 
-
         boolean pickEmployee = false;
-
-       // input.nextLine();
-
 
         while (pickEmployee == false) {
             System.out.println("Who should treat them? (Pick by Employee Number) ");
@@ -107,9 +104,7 @@ public class HospitalApplication {
             int choice = input.nextInt();
             input.nextLine();
             //treatPatient returns a boolean
-
             pickEmployee = hospital.treatPatient(choice,patientChoice);
-
         }
     }
 
@@ -118,6 +113,36 @@ public class HospitalApplication {
         printAllPatients();
         String choice = input.nextLine();
         hospital.dischargePatient(choice);
+    }
+
+    public static void addEmployee(){
+        System.out.println("Press 1 to add doctor press 2 to add nurse...");
+        int choice = input.nextInt();
+        input.nextLine();
+
+        while (choice!=0) {
+            if (choice == 1) {
+                System.out.println("Enter doctor name: ");
+                String name = input.nextLine();
+                System.out.println("Enter doctor specialty: ");
+                String specialty = input.nextLine();
+                Employee newEmp = new Doctor(name, 90000, specialty);
+                hospital.employeeAdd(newEmp);
+                System.out.println("Added new doctor " + newEmp.getName());
+                choice = 0;
+
+            } else if (choice == 2) {
+                System.out.println("Enter nurse name: ");
+                String name = input.nextLine();
+                Employee newEmp = new Nurse(name, 20000);
+                hospital.employeeAdd(newEmp);
+                System.out.println("Added new nurse " + newEmp.getName());
+                choice = 0;
+            } else {
+                System.out.println("Invalid, back to men u...");
+                choice = 0;
+            }
+        }
     }
 
 
