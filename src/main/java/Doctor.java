@@ -1,9 +1,9 @@
 public class Doctor extends Employee implements CanTreatPatient {
 
 
-    public String specialtyArea;
-    public int bloodAmount = 30;
-    public int healthAmount = 25;
+    private String specialtyArea;
+    private int bloodAmount = 30;
+    private int healthAmount = 25;
 
     public Doctor(String name, int salary, String specialtyArea) {
         super(name, salary);

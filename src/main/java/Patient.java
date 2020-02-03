@@ -1,20 +1,18 @@
 public class Patient {
 
-    public int BLOOD_LEVEL = 20;
+    private int BLOOD_LEVEL = 20;
 
-    public int HEALTH_LEVEL = 10;
+    private int HEALTH_LEVEL = 10;
 
-    public String patientName;
+    private String patientName;
 
-    public boolean eligibleForDischarge;
+    private boolean eligibleForDischarge;
 
-
-    // reach goal print out string of "bad" "recovery" or "good"
-    // public String patientStatus;
     public Patient(String name) {
         this.patientName = name;
     }
 
+    // GETTERS
     public String getPatientName() {
         return patientName;
     }
@@ -23,6 +21,20 @@ public class Patient {
         return BLOOD_LEVEL;
     }
 
+    public boolean determineDischarge(){
+        boolean answer = false;
+        if ((this.HEALTH_LEVEL > 30 ) && (this.BLOOD_LEVEL > 30)){
+            answer = true;
+        }
+        setEligibleForDischarge(answer);
+        return answer;
+    }
+
+    public int getHEALTH_LEVEL() {
+        return HEALTH_LEVEL;
+    }
+
+    // SETTERS
     public void setEligibleForDischarge(boolean e) {
         this.eligibleForDischarge = e;
     }
@@ -35,28 +47,12 @@ public class Patient {
         this.HEALTH_LEVEL += healthAmount;
     }
 
-    public boolean determineDischarge(){
-        boolean answer = false;
-        if ((this.HEALTH_LEVEL > 30 ) && (this.BLOOD_LEVEL > 30)){
-            answer = true;
-        }
-        setEligibleForDischarge(answer);
-        return answer;
-    }
-
-
-
-    public int getHEALTH_LEVEL() {
-        return HEALTH_LEVEL;
-    }
+    //Methods
 
     public void printPatientStats(){
         System.out.println("Name         :  "+ patientName);
         System.out.println("Blood Level  :  "+ BLOOD_LEVEL);
         System.out.println("Health Level :  " + HEALTH_LEVEL);
         System.out.println("Can Discharge:  " + eligibleForDischarge);
-
     }
-
-
 }

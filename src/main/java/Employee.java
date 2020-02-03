@@ -8,13 +8,11 @@ protected String name;
 
     private int empNumber;
 
-    public int salary;
+    private int salary;
 
-    public int income;
+    private int income;
 
-    public String job;
-
-    public int bloodAmount;
+    protected String job;
 
     public int getBloodAmount() {
         return 0;
@@ -23,6 +21,7 @@ protected String name;
         return 0;
     }
 
+    //default constructor
     public Employee(String name, int salary) {
         this.name = name;
         this.salary = salary;
@@ -30,16 +29,13 @@ protected String name;
         setEmpNumber(++count);
     }
 
+    // Getters
     public String getName(){
         return name;
     }
 
     public String getJob() {
         return job;
-    }
-
-    public void setEmpNumber(int count) {
-        this.empNumber = count;
     }
 
     public int getEmpNumber() {
@@ -52,6 +48,11 @@ protected String name;
 
     public boolean isHasBeenPaid() {
         return hasBeenPaid;
+    }
+
+    // Setters
+    public void setEmpNumber(int count) {
+        this.empNumber = count;
     }
 
     public void payEmployee(){

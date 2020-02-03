@@ -1,6 +1,6 @@
 public class Janitor extends Employee {
 
-    public String job = "Janitor";
+    private static String job = "Janitor";
 
     public Janitor(String name, int salary) {
         super(name, salary);
